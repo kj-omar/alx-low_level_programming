@@ -1,6 +1,6 @@
 #include<stdio.h>
 /*
- *  Write a C program that prints exactly
+ * main - Entry point
  */
 int main(void)
 {

@@ -1,8 +1,8 @@
 #include <unistd.h>
-#include <stdio.h>
-int main()
-int main.h()
-{
-	printf("_putchar\n");
-	return(0);
+
+int main() {
+    char i[] = "_putchar\n";
+    write(STDOUT_FILENO, i, sizeof(i) - 1);
+
+    return 0;
 }

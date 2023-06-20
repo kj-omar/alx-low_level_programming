@@ -1,9 +1,12 @@
 #include <unistd.h>
 #include <main.h>
 
-int main() {
-    char i[] = "_putchar\n";
-    write(STDOUT_FILENO, i, sizeof(i) - 1);
+int main(void)
 
-    return 0;
+{
+	char i[] = "_putchar\n";
+
+	write(STDOUT_FILENO, i, sizeof(i) - 1);
+
+	return (0);
 }

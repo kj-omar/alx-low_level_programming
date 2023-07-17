@@ -1,7 +1,12 @@
-import os
+#include <stdio.h>
 
-def print_filename():
-    filename = os.path.basename(__file__)
-    print(filename)
-
-print_filename()
+/**
+ * main - prints the name of the file
+ *
+ * Return: Always 0 (Success)
+ */
+int ain(void)
+{
+	printf("%s\n", __FILE__);
+	return (0);
+}

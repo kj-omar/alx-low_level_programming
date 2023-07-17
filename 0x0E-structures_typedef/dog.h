@@ -9,19 +9,13 @@
  *
  * Description: Longer description
  */
-
-
-{
-	struct dog
+struct dog
 	{
 	char name;
 	float age;
 	char owner;
-	/**
-	* @brief The end of the Dog structure.
-	*/
-
 	};
-
-}
+	/**
+	* dog_t - typedef for struct dog
+	*/
 #endif

@@ -25,14 +25,13 @@ int main(int argc, char *argv[])
     }
 
     FILE *from = fopen(argv[1], "r");
-    FILE *to = fopen(argv[2], "w");
-
     if (!from)
     {
         dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
         exit(98);
     }
 
+    FILE *to = fopen(argv[2], "w");
     if (!to)
     {
         dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
@@ -41,25 +40,18 @@ int main(int argc, char *argv[])
     }
 
     char buffer[BUFFER_SIZE];
-    size_t bytesRead;
+    size_t bytesRead, bytesWritten;
 
     do {
         bytesRead = fread(buffer, sizeof(char), BUFFER_SIZE, from);
-        if (ferror(from))
-        {
-            dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-            fclose(from);
-            fclose(to);
-            exit(98);
-        }
+        bytesWritten = fwrite(buffer, sizeof(char), bytesRead, to);
 
-        size_t bytesWritten = fwrite(buffer, sizeof(char), bytesRead, to);
-        if (bytesWritten != bytesRead || ferror(to))
+        if (bytesRead != bytesWritten || ferror(from) || ferror(to))
         {
-            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+            dprintf(STDERR_FILENO, "Error: Failed to copy the file\n");
             fclose(from);
             fclose(to);
-            exit(99);
+            exit(100);
         }
 
     } while (bytesRead > 0);

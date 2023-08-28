@@ -1,2 +1,0 @@
- - Singly linked lists
-

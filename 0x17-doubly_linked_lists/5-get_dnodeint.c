@@ -1,26 +1,25 @@
-/*
- * File: 5-get_dnodeint.c
- * Auth: Gedeon Obae Gekonge
- */
-
 #include "lists.h"
 
 /**
- * get_dnodeint_at_index - Locates a node in a dlistint_t list.
- * @head: The head of the dlistint_t list.
- * @index: The node to locate.
+ * get_dnodeint_at_index - finds a specific node of a linked list
+ * @head: pointer to the beginning of the list
+ * @index: index of the node to retrieve
  *
- * Return: If the node does not exist - NULL.
- *         Otherwise - the address of the located node.
+ * Return: pointer to the indexed node, or NULL on failure
  */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-	for (; index != 0; index--)
+	unsigned int i;
+
+	if (head == NULL)
+		return (NULL);
+	if (index == 0)
+		return (head);
+	for (i = 0; i < index; i++)
 	{
-		if (head == NULL)
+		if (head->next == NULL)
 			return (NULL);
 		head = head->next;
 	}
-
 	return (head);
 }
